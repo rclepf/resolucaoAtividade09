@@ -1,0 +1,75 @@
+01 - Seleciona as colunas Nome, Cidade e Telefone de todos os registros da tabela Clientes. Essa consulta serve para visualizar as informações básicas de todos os clientes cadastrados.
+
+02 - Seleciona os produtos cujo valor na coluna Preço é maior que 500. A cláusula WHERE filtra apenas os registros que atendem a essa condição.
+
+03 - Usa JOIN para conectar as tabelas Pedidos, Clientes e Produtos com base em suas chaves primárias e estrangeiras.
+     Filtra os pedidos realizados na data 2024-12-02 usando a cláusula WHERE.
+     Exibe o nome do cliente, o produto adquirido e a quantidade comprada.
+
+04 - Usa a função de agregação SUM para somar a coluna Quantidade de todos os registros na tabela Pedidos, retornando o total de itens vendidos.
+
+05 - Conecta as tabelas Pedidos e Clientes para obter os nomes dos clientes associados aos pedidos.
+     Filtra os pedidos com quantidade maior que 1.
+     Usa DISTINCT para evitar nomes repetidos na saída.
+
+06 - Conecta Pedidos, Clientes e Produtos para obter os detalhes dos clientes que compraram um produto específico, neste caso, "Monitor".
+     Filtra os registros onde o nome do produto é "Monitor" e evita duplicatas com DISTINCT.
+
+07 - Calcula o valor total de cada pedido multiplicando a Quantidade pelo Preço do produto.
+     Exibe o nome do cliente, o nome do produto e o valor total do pedido.
+
+08 - Conecta as tabelas para exibir os pedidos realizados por clientes.
+     Filtra os clientes cuja cidade é "Curitiba" usando WHERE.
+
+09 - Usa uma subconsulta para encontrar o maior valor da coluna Preço.
+     Filtra os produtos cujo preço é igual ao valor máximo encontrado.
+
+10 - Conecta as tabelas Pedidos e Clientes para associar os pedidos aos respectivos clientes.
+     Usa a função de agregação SUM para somar a quantidade total de produtos comprados por cliente.
+     Agrupa os resultados por nome do cliente com GROUP BY.
+
+
+O que significa c.Nome e p.Nome?
+
+c.Nome: Refere-se à coluna Nome da tabela Clientes, que foi atribuída o alias (apelido) c na consulta.
+p.Nome: Refere-se à coluna Nome da tabela Produtos, que foi atribuída o alias (apelido) p na consulta.
+
+Por que usamos c.Nome e p.Nome em vez de apenas Nome?
+Quando múltiplas tabelas são incluídas em uma consulta (usando JOIN), é possível que diferentes tabelas tenham colunas com o mesmo nome. Por exemplo, tanto a tabela Clientes quanto a tabela Produtos possuem uma coluna chamada Nome. 
+Nesse caso, usar apenas Nome causaria ambiguidade, e o banco de dados não saberia de qual tabela a coluna deve ser usada.
+
+Uso de aliases (apelidos)
+Os aliases, como c e p, são atribuídos às tabelas para evitar confusões e tornar as consultas mais legíveis. 
+Diz ao banco que, a partir desse ponto, a tabela Clientes pode ser referenciada como c.
+Então, ao escrever c.Nome, estamos especificando claramente que queremos a coluna Nome da tabela Clientes.
+
+Por que isso é útil?
+Em consultas com várias tabelas, isso evita:
+Ambiguidade ao acessar colunas com o mesmo nome.
+Erros de interpretação pelo banco de dados.
+Dificuldades para entender qual dado vem de qual tabela.
+
+Exemplo detalhado
+Considere a consulta:
+SELECT c.Nome, p.Nome
+FROM Pedidos ped
+JOIN Clientes c ON ped.ID_Cliente = c.ID_Cliente
+JOIN Produtos p ON ped.ID_Produto = p.ID_Produto;
+
+Passo a passo de como o SQL processa isso:
+Alias atribuídos:
+c para a tabela Clientes.
+p para a tabela Produtos.
+ped para a tabela Pedidos.
+
+Resolução da coluna Nome:
+Quando você escreve c.Nome, o SQL sabe que deve procurar pela coluna Nome na tabela referida como c, ou seja, Clientes.
+Quando você escreve p.Nome, o SQL busca pela coluna Nome na tabela referida como p, ou seja, Produtos.
+
+Evitar ambiguidade:
+Se você tivesse apenas escrito Nome sem prefixar com c. ou p., o SQL lançaria um erro, porque Nome é uma coluna presente em duas tabelas diferentes (Clientes e Produtos).
+
+Saída da consulta: O resultado incluirá dois campos:
+O nome do cliente, extraído de c.Nome.
+O nome do produto, extraído de p.Nome.
+
