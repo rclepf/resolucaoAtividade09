@@ -29,10 +29,12 @@ Segue código SQL para criar a base de dados:
 
 CREATE DATABASE LojaSimples;
 USE LojaSimples;
+
 CREATE TABLE Clientes (
 ID_Cliente INT AUTO_INCREMENT PRIMARY KEY,
 Nome VARCHAR(100) NOT NULL,
 Cidade VARCHAR(100), Telefone VARCHAR(15) );
+
 CREATE TABLE Produtos (
 ID_Produto INT AUTO_INCREMENT PRIMARY KEY,
 Nome VARCHAR(100) NOT NULL,
