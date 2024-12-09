@@ -1,5 +1,3 @@
-```sql
-
 INSERT INTO Clientes (ID_Cliente, Nome, Cidade, Telefone) VALUES 
 (4, 'Carlos Pereira', 'Salvador', '71966666666'),
 (5, 'Fernanda Lima', 'Curitiba', '41955555555'),
